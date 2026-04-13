@@ -1,0 +1,30 @@
+[project]
+name = "zillow"
+version = "0.1.0"
+description = "Zillow Real Estate Data Connector"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "psutil>=5.9.0",
+    "httpx>=0.24.0",
+    "pyarrow>=12.0.0",
+    "pandas>=2.0.0",
+    "tenacity>=8.2.0",
+    "boto3>=1.28.0",
+    "ratelimit>=2.2.1",
+    "duckdb>=0.9.0",
+    "requests>=2.31.0",
+    "deltalake>=0.17.0",
+    "sqlalchemy>=2.0.43",
+
+    "duckdb",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "psutil>=5.9.0",
+    "pytest>=7.3.0",
+    "pytest-asyncio>=0.21.0",
+
+    "duckdb",
+]

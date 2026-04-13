@@ -1,0 +1,65 @@
+# Environment variables
+.env
+
+# Data directories
+data/
+raw/
+processed/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+# Only track production state
+.state/
+!.state/prod/
+**/http_cache/
+logs/
+
+# Synced from template
+# Cache and logs
+# Development files
+# Output data (subsets is published, raw is local cache)
+# Python environment
+# State (keep prod state for tracking)
+data/raw/
+dev.py
+dev/
+
+# Synced from template
+# Output data (synced via R2, not git)
+data
