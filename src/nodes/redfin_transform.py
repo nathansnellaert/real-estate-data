@@ -79,9 +79,16 @@ def _transform_tracker(raw_name: str, geo_level: str) -> pa.Table:
     """Transform a market tracker TSV into a clean table."""
     df = _load_redfin_tsv(raw_name)
 
-    # Filter to seasonally adjusted "All Residential" data only
+    # Prefer seasonally adjusted data; fall back to non-adjusted if SA not available
     if "IS_SEASONALLY_ADJUSTED" in df.columns:
-        df = df[df["IS_SEASONALLY_ADJUSTED"] == True]
+        col = df["IS_SEASONALLY_ADJUSTED"]
+        # Handle both boolean and string representations
+        sa_mask = col.isin([True, "true", "True", "TRUE"])
+        if sa_mask.any():
+            df = df[sa_mask]
+        else:
+            # State/county data only has non-seasonally-adjusted
+            df = df[col.isin([False, "false", "False", "FALSE"])]
     if "PROPERTY_TYPE" in df.columns:
         df = df[df["PROPERTY_TYPE"] == "All Residential"]
 
@@ -155,7 +162,7 @@ def _make_metadata(geo_level: str) -> dict:
     return {
         "id": f"redfin_market_{geo_level}",
         "title": f"Redfin Housing Market by {level_label}",
-        "description": f"Redfin monthly housing market data at the {level_label.lower()} level. Seasonally adjusted, all residential property types. Includes sale prices, inventory, days on market, and market competitiveness metrics.",
+        "description": f"Redfin monthly housing market data at the {level_label.lower()} level. Seasonally adjusted where available (national, metro); not seasonally adjusted at state and county level. All residential property types. Includes sale prices, inventory, days on market, and market competitiveness metrics.",
         "license": "Redfin - free for non-commercial use with attribution",
         "column_descriptions": col_descs,
     }
