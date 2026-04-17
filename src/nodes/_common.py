@@ -70,8 +70,9 @@ def standardize_columns(df: pd.DataFrame, region_type: str, value_cols: list) ->
         "StateName": "state_code",
     })
 
-    # Drop unnecessary columns
-    drop_cols = [c for c in ["SizeRank", "RegionType"] if c in df.columns]
+    # Drop unnecessary columns (Metro, State, FIPS codes are Zillow metadata)
+    drop_cols = [c for c in ["SizeRank", "RegionType", "Metro", "State",
+                              "StateCodeFIPS", "MunicipalCodeFIPS"] if c in df.columns]
     df = df.drop(columns=drop_cols)
 
     # Handle state_code
