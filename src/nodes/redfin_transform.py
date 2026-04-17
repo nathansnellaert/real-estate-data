@@ -62,7 +62,7 @@ COLUMN_RENAME = {
 GEO_LEVELS = {
     "market_tracker_national": ("national", 100),
     "market_tracker_state": ("state", 5_000),
-    "market_tracker_metro": ("metro", 50_000),
+    "market_tracker_metro": ("metro", 5_000),
     "market_tracker_county": ("county", 50_000),
 }
 
