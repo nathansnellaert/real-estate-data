@@ -150,6 +150,14 @@ def run():
         print(f"  [{i}/{len(downloads)}] {dataset_id} ({region})...")
 
         response = get(url, timeout=120.0)
+
+        # Some datasets aren't available for all region types (e.g. ZORI at State)
+        if response.status_code == 404:
+            print(f"    -> 404 (not available for {region}), skipping")
+            completed.add(key)
+            save_state("zillow_ingest", {"completed": list(completed)})
+            continue
+
         response.raise_for_status()
 
         # Save with region type in filename
