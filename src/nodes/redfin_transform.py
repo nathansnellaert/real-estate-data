@@ -60,7 +60,7 @@ COLUMN_RENAME = {
 
 # Datasets to transform: raw_name -> (dataset_id suffix, min_rows)
 GEO_LEVELS = {
-    "market_tracker_national": ("national", 1_000),
+    "market_tracker_national": ("national", 100),
     "market_tracker_state": ("state", 5_000),
     "market_tracker_metro": ("metro", 50_000),
     "market_tracker_county": ("county", 50_000),
