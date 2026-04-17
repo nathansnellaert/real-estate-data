@@ -33,6 +33,7 @@ def make_metadata(region_type: str) -> dict:
         "id": f"zillow_inventory_{region_type}",
         "title": f"Zillow Housing Inventory by {label}",
         "description": f"Zillow housing inventory metrics by {label.lower()}. Includes for-sale inventory count, new listings count, and new pending sales count. Property type is single-family residences and condos.",
+        "license": "Zillow - free for non-commercial use with attribution",
         "column_descriptions": col_descs
     }
 

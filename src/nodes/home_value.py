@@ -47,6 +47,7 @@ def make_metadata(region_type: str) -> dict:
         "id": f"zillow_home_value_{region_type}",
         "title": f"Zillow Home Value Index by {label}",
         "description": f"Zillow Home Value Index (ZHVI) by {label.lower()}. ZHVI is a smoothed, seasonally adjusted measure of the typical home value. Includes different property types (all homes, single-family, condo), bedroom counts (1-5+), and price tiers (bottom, mid, top).",
+        "license": "Zillow - free for non-commercial use with attribution",
         "column_descriptions": col_descs
     }
 

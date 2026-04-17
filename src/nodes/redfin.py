@@ -1,48 +1,34 @@
 """Fetch housing market data from Redfin Data Center.
 
-Downloads TSV files from Redfin's S3 bucket containing housing market data
-at various geographic levels (national, state, metro, county, city, zip, neighborhood).
+Downloads monthly market tracker TSV files from Redfin's S3 bucket at
+national, state, metro, and county levels.
+
+Skipped (documented decision):
+- Weekly data: overlaps with monthly, less stable
+- City/ZIP/neighborhood: very large files, low marginal value over county
 """
 
 from subsets_utils import get, save_raw_file, load_state, save_state
 
 BASE_URL = "https://redfin-public-data.s3.us-west-2.amazonaws.com"
 
-# Available datasets with their S3 paths
+# Monthly market tracker by geography
 DATASETS = {
-    # Weekly data (most recent)
-    "weekly_housing_market": {
-        "path": "redfin_covid19/weekly_housing_market_data_most_recent.tsv000.gz",
-        "description": "Weekly housing market data (most recent)",
-    },
-    # Monthly market tracker by geography
     "market_tracker_national": {
         "path": "redfin_market_tracker/us_national_market_tracker.tsv000.gz",
         "description": "National-level monthly market data",
-    },
-    "market_tracker_metro": {
-        "path": "redfin_market_tracker/redfin_metro_market_tracker.tsv000.gz",
-        "description": "Metro-level monthly market data",
     },
     "market_tracker_state": {
         "path": "redfin_market_tracker/state_market_tracker.tsv000.gz",
         "description": "State-level monthly market data",
     },
+    "market_tracker_metro": {
+        "path": "redfin_market_tracker/redfin_metro_market_tracker.tsv000.gz",
+        "description": "Metro-level monthly market data",
+    },
     "market_tracker_county": {
         "path": "redfin_market_tracker/county_market_tracker.tsv000.gz",
         "description": "County-level monthly market data",
-    },
-    "market_tracker_city": {
-        "path": "redfin_market_tracker/city_market_tracker.tsv000.gz",
-        "description": "City-level monthly market data",
-    },
-    "market_tracker_zip": {
-        "path": "redfin_market_tracker/zip_code_market_tracker.tsv000.gz",
-        "description": "ZIP code-level monthly market data",
-    },
-    "market_tracker_neighborhood": {
-        "path": "redfin_market_tracker/neighborhood_market_tracker.tsv000.gz",
-        "description": "Neighborhood-level monthly market data",
     },
 }
 

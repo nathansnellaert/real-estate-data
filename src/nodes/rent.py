@@ -25,6 +25,7 @@ def make_metadata(region_type: str) -> dict:
         "id": f"zillow_rent_{region_type}",
         "title": f"Zillow Observed Rent Index by {label}",
         "description": f"Zillow Observed Rent Index (ZORI) by {label.lower()}. ZORI is a smoothed, seasonally adjusted measure of the typical observed market rate rent. Includes single-family, condo, and multifamily rentals.",
+        "license": "Zillow - free for non-commercial use with attribution",
         "column_descriptions": col_descs
     }
 

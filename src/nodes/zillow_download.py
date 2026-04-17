@@ -149,20 +149,16 @@ def run():
 
         print(f"  [{i}/{len(downloads)}] {dataset_id} ({region})...")
 
-        try:
-            response = get(url, timeout=120.0)
-            response.raise_for_status()
+        response = get(url, timeout=120.0)
+        response.raise_for_status()
 
-            # Save with region type in filename
-            save_raw_file(response.text, f"{dataset_id}_{region.lower()}", extension="csv")
+        # Save with region type in filename
+        save_raw_file(response.text, f"{dataset_id}_{region.lower()}", extension="csv")
 
-            completed.add(key)
-            save_state("zillow_ingest", {"completed": list(completed)})
+        completed.add(key)
+        save_state("zillow_ingest", {"completed": list(completed)})
 
-            print(f"    -> saved ({len(response.text):,} bytes)")
-        except Exception as e:
-            print(f"    -> FAILED: {e}")
-            # Continue to next file, don't abort entire run
+        print(f"    -> saved ({len(response.text):,} bytes)")
 
 
 NODES = {

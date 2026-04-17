@@ -41,6 +41,7 @@ def make_metadata(region_type: str, columns: list) -> dict:
         "id": f"zillow_sales_{region_type}",
         "title": f"Zillow Sales Metrics by {label}",
         "description": f"Zillow sales and pricing metrics by {label.lower()}. Includes median list/sale prices, sales counts, days to pending, and price cut statistics. Property type is single-family residences and condos.",
+        "license": "Zillow - free for non-commercial use with attribution",
         "column_descriptions": col_descs
     }
 
